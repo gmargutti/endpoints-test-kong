@@ -23,7 +23,6 @@ services:
     response_buffering: true
     strip_path: true
   write_timeout: 60000
-
 - connect_timeout: 60000
   host: mockbin.org
   name: example_service
@@ -46,7 +45,6 @@ services:
     response_buffering: true
     strip_path: true
   write_timeout: 60000
-  
 - connect_timeout: 60000
   host: web
   name: front.endpoints-test
@@ -68,4 +66,30 @@ services:
     request_buffering: true
     response_buffering: true
     strip_path: true
+  - https_redirect_status_code: 426
+    name: next-favicon
+    path_handling: v0
+    paths:
+    - /favicon.ico
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: false
+  - https_redirect_status_code: 426
+    name: next-static-files
+    path_handling: v0
+    paths:
+    - /_next/.*
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: false
   write_timeout: 60000
