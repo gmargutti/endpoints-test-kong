@@ -1,0 +1,71 @@
+_format_version: "1.1"
+services:
+- connect_timeout: 60000
+  host: web
+  name: back.endpoints-test
+  path: /api/hello
+  port: 3000
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    name: apis
+    path_handling: v0
+    paths:
+    - /back
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
+
+- connect_timeout: 60000
+  host: mockbin.org
+  name: example_service
+  port: 80
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    name: mocking
+    path_handling: v0
+    paths:
+    - /mock
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
+  
+- connect_timeout: 60000
+  host: web
+  name: front.endpoints-test
+  port: 3000
+  protocol: http
+  read_timeout: 60000
+  retries: 5
+  routes:
+  - https_redirect_status_code: 426
+    name: index-front
+    path_handling: v0
+    paths:
+    - /front
+    preserve_host: false
+    protocols:
+    - http
+    - https
+    regex_priority: 0
+    request_buffering: true
+    response_buffering: true
+    strip_path: true
+  write_timeout: 60000
