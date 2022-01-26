@@ -3,9 +3,11 @@ FROM node:alpine
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
 
-COPY . /usr/src
-
+COPY package.json /usr/src
+COPY package-lock.json /usrc/src
 RUN npm install
+
+COPY . /usr/src
 
 RUN npm run build
 EXPOSE 3000
